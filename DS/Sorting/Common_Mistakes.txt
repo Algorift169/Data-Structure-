@@ -1,0 +1,8 @@
+COMMON SORTING MISTAKES
+
+- Forgetting 0-index for array traversal
+- Using wrong loop bounds
+- Not printing array after sorting
+- Choosing unstable sort when stability matters
+- Using counting/radix sort for negative numbers without adjustment
+- Forgetting to handle empty arrays

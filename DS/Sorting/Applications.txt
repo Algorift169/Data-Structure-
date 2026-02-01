@@ -1,0 +1,8 @@
+SORTING APPLICATIONS
+
+- Leaderboards, Rankings
+- Database record arrangement
+- Searching optimization (binary search)
+- Median/percentile calculation
+- Histogram / frequency analysis
+- Scheduling tasks in OS / event simulation
