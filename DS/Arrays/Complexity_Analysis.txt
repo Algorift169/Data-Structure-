@@ -1,0 +1,12 @@
+ARRAY OPERATIONS COMPLEXITY
+
+=========================================================
+Operation      | Static Array  | Dynamic Array (vector) 
+---------------|---------------|----------------------
+Access         | O(1)          | O(1)
+Search         | O(n)          | O(n)
+Insert (end)   | O(n)          | O(1) amortized
+Insert (middle)| O(n)          | O(n)
+Delete         | O(n)          | O(n)
+Space          | O(n)          | O(n) + dynamic overhead
+==========================================================

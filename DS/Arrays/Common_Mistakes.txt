@@ -1,0 +1,8 @@
+COMMON ARRAY MISTAKES
+
+- Forgetting 0-based indexing
+- Accessing out-of-bound indices
+- Using wrong size in static arrays
+- Forgetting to free dynamic memory (for raw pointers)
+- Confusing vector methods with C-style arrays
+- Not updating size after insertion/deletion
