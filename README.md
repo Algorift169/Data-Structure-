@@ -74,3 +74,70 @@ No unnecessary theory. No filler.
 
 ## 📂 Repository Structure
 
+Data-Structures-Notes/
+│
+├── Arrays/
+├── Linked_List/
+├── Stack/
+├── Queue/
+├── Trees/
+├── Graphs/
+├── Sorting/
+├── Searching/
+└── README.md
+
+
+Clean structure = faster revision.
+
+---
+
+## 👥 Who This Is For
+
+- 1st–2nd year **CSE students**
+- Students preparing for **viva / written exams**
+- Beginners aiming to **actually understand DSA**
+- Anyone tired of scattered notes
+
+If you’re looking for shortcuts without understanding—this repo isn’t for you.
+
+---
+
+## 🚀 How to Use This Repository
+
+1. Pick one topic
+2. Read the concept
+3. Understand the logic
+4. Implement it yourself
+5. Revisit before exams/interviews
+
+Simple. Effective.
+
+---
+
+## 🤝 Contributions
+
+Suggestions, corrections, and improvements are welcome.
+
+If you contribute:
+- Keep explanations precise
+- Avoid unnecessary complexity
+- Maintain the existing format
+
+Quality > quantity.
+
+---
+
+## 📌 Disclaimer
+
+These notes are written for **learning and understanding**, not for blind memorization.  
+Use them responsibly.
+
+---
+
+## ⭐ Support
+
+If this repository helps you:
+- Give it a ⭐
+- Share it with your classmates
+
+Knowledge grows when shared.
