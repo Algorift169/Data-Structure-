@@ -1,0 +1,629 @@
+┌─────────────────────────────────────────────────────────────────────┐
+│                   📌 SORTING ALGORITHMS — COMPLETE MASTER GUIDE    │
+│                     Step-by-Step Implementation Blueprints          │
+└─────────────────────────────────────────────────────────────────────┘
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🎯 UNDERSTANDING THE LEGEND
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Before we begin, understand these critical symbols:
+• 🎯 = Key step in the algorithm
+• 🔄 = Iteration/loop step  
+• ✅ = Completion check
+• ⚠️ = Important consideration
+• 🔍 = Comparison operation
+• 🏃 = Movement/shift operation
+• 📊 = Pivot/partition element
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+1️⃣ BUBBLE SORT — "The Gradual Riser"
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📝 EXACT STEP-BY-STEP ALGORITHM:
+
+Step 1: 🎯 Initialize `n = arr.size()`
+        Start with array size to control passes
+
+Step 2: 🔄 Outer loop: `for i = 0 to n-2` (n-1 passes needed)
+        Each pass places one element in correct position
+
+Step 3: ✅ Initialize `swapped = false`
+        Track if any swaps occurred in this pass
+
+Step 4: 🔄 Inner loop: `for j = 0 to n-i-2`
+        Compare adjacent elements, ignoring already sorted end portion
+
+Step 5: 🔍 Compare `arr[j]` and `arr[j+1]`
+        Check if they're in wrong order (for ascending: arr[j] > arr[j+1])
+
+Step 6: 🏃 If wrong order: Swap `arr[j]` ↔ `arr[j+1]`
+        Move larger element towards the end
+        Set `swapped = true`
+
+Step 7: ✅ After inner loop: Check `swapped`
+        If `swapped == false`: Array is sorted! BREAK EARLY
+        This is the optimization for nearly sorted arrays
+
+Step 8: 🔄 Continue outer loop until all passes complete
+
+🔄 VISUALIZATION OF SINGLE PASS:
+Initial: [5, 3, 8, 1, 2]
+Pass 1:  [3, 5, 1, 2, 8] ← 8 bubbled to end
+Pass 2:  [3, 1, 2, 5, 8] ← 5 moved to position
+Pass 3:  [1, 2, 3, 5, 8] ← 3 moved to position
+Pass 4:  [1, 2, 3, 5, 8] ← No swaps, DONE!
+
+⚡ COMPLEXITY BREAKDOWN:
+• Time: O(n²) comparisons & swaps in worst case
+• Space: O(1) - only a few variables needed
+• Stable: YES - equal elements maintain order
+• Adaptive: YES - O(n) if already sorted
+
+🎯 WHEN TO USE:
+• Arrays with n ≤ 50 elements
+• Educational demonstrations
+• Already nearly sorted data
+• When you need simple, stable sort
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+2️⃣ SELECTION SORT — "The Minimum Hunter"
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📝 EXACT STEP-BY-STEP ALGORITHM:
+
+Step 1: 🎯 Set `n = arr.size()`
+        Know the boundaries of our array
+
+Step 2: 🔄 Outer loop: `for i = 0 to n-2`
+        Each iteration finds minimum in unsorted portion
+
+Step 3: 🎯 Assume current minimum at position `min_idx = i`
+        Start with first unsorted element as candidate
+
+Step 4: 🔄 Inner loop: `for j = i+1 to n-1`
+        Scan remaining unsorted elements
+
+Step 5: 🔍 Compare `arr[j]` with `arr[min_idx]`
+        Look for a smaller element
+
+Step 6: 🎯 If `arr[j] < arr[min_idx]`: Update `min_idx = j`
+        Found a new minimum candidate
+
+Step 7: ✅ After inner loop: Check if `min_idx != i`
+        If minimum is not at current position...
+
+Step 8: 🏃 Swap `arr[i]` ↔ `arr[min_idx]`
+        Place minimum in its correct sorted position
+
+Step 9: 🔄 Continue until all positions filled
+
+🔄 VISUALIZATION PROCESS:
+Initial: [64, 25, 12, 22, 11]
+Pass 1: Find min in [0..4] = 11 → Swap → [11, 25, 12, 22, 64]
+Pass 2: Find min in [1..4] = 12 → Swap → [11, 12, 25, 22, 64]
+Pass 3: Find min in [2..4] = 22 → Swap → [11, 12, 22, 25, 64]
+Pass 4: Find min in [3..4] = 25 → Already in place
+Result: [11, 12, 22, 25, 64]
+
+⚡ COMPLEXITY BREAKDOWN:
+• Time: Always O(n²) - scans entire unsorted portion each time
+• Space: O(1) - minimal extra storage
+• Stable: NO - swapping can change order of equal elements
+• Adaptive: NO - same time regardless of input order
+
+🎯 WHEN TO USE:
+• Small arrays where writes are expensive
+• Memory-constrained environments
+• When you want minimum number of swaps
+• Educational purposes to understand selection
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+3️⃣ INSERTION SORT — "The Card Player's Method"
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📝 EXACT STEP-BY-STEP ALGORITHM:
+
+Step 1: 🎯 Set `n = arr.size()`
+        First element arr[0] is trivially sorted
+
+Step 2: 🔄 Outer loop: `for i = 1 to n-1`
+        Process each unsorted element
+
+Step 3: 🎯 Store `key = arr[i]`
+        The element to insert into sorted portion
+
+Step 4: 🎯 Set `j = i - 1`
+        Start comparing from just before current element
+
+Step 5: 🔄 While loop: `while j >= 0 AND arr[j] > key`
+        Shift elements greater than key to the right
+
+Step 6: 🏃 Inside while: `arr[j+1] = arr[j]`
+        Move larger element one position right
+        Decrement `j--`
+
+Step 7: ✅ Exit when `j < 0` OR `arr[j] <= key`
+        Found correct insertion point
+
+Step 8: 🏃 Insert: `arr[j+1] = key`
+        Place the key element in its sorted position
+
+Step 9: 🔄 Process next unsorted element
+
+🔄 VISUALIZATION PROCESS:
+Initial: [12, 11, 13, 5, 6]
+i=1: key=11, shift 12 → [11, 12, 13, 5, 6]
+i=2: key=13, no shift → [11, 12, 13, 5, 6]
+i=3: key=5, shift 13,12,11 → [5, 11, 12, 13, 6]
+i=4: key=6, shift 13,12,11 → [5, 6, 11, 12, 13]
+
+⚡ COMPLEXITY BREAKDOWN:
+• Best time: O(n) - already sorted array
+• Worst time: O(n²) - reverse sorted array
+• Space: O(1) - in-place sorting
+• Stable: YES - equal elements maintain order
+• Adaptive: YES - efficient for nearly sorted data
+
+🎯 WHEN TO USE:
+• Small arrays (n < 50)
+• Nearly sorted data
+• Online algorithms (data arriving one by one)
+• As final step in more complex sorts (like Timsort)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+4️⃣ MERGE SORT — "Divide and Conquer Master"
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📝 EXACT STEP-BY-STEP ALGORITHM:
+
+━━━━━ A. MAIN MERGESORT FUNCTION ━━━━━
+Step 1: ✅ Base case: If `left >= right`, return (single element sorted)
+
+Step 2: 🎯 Calculate midpoint: `mid = left + (right - left) / 2`
+        Avoid overflow for large arrays
+
+Step 3: 🔄 Recursively sort left half: `mergeSort(arr, left, mid)`
+
+Step 4: 🔄 Recursively sort right half: `mergeSort(arr, mid+1, right)`
+
+Step 5: 🎯 Merge sorted halves: `merge(arr, left, mid, right)`
+
+━━━━━ B. MERGE FUNCTION (CORE OPERATION) ━━━━━
+Step 1: 🎯 Create temporary arrays:
+        `leftArr = arr[left..mid]`
+        `rightArr = arr[mid+1..right]`
+
+Step 2: 🎯 Initialize pointers:
+        `i = 0` (left array index)
+        `j = 0` (right array index)
+        `k = left` (main array index)
+
+Step 3: 🔄 While `i < leftSize AND j < rightSize`:
+        Compare `leftArr[i]` and `rightArr[j]`
+
+Step 4: 🔍 If `leftArr[i] <= rightArr[j]`:
+        `arr[k] = leftArr[i]`, increment `i++`
+        (Preserves stability with `<=`)
+
+Step 5: 🔍 Else:
+        `arr[k] = rightArr[j]`, increment `j++`
+
+Step 6: 🔄 Increment `k++` after each assignment
+
+Step 7: 🏃 Copy remaining elements from leftArr (if any)
+
+Step 8: 🏃 Copy remaining elements from rightArr (if any)
+
+🔄 VISUALIZATION PROCESS:
+[38, 27, 43, 3, 9, 82, 10]
+↓ Split
+[38, 27, 43, 3] [9, 82, 10]
+↓ Split further  
+[38, 27] [43, 3] [9, 82] [10]
+↓ Merge
+[27, 38] [3, 43] [9, 82] [10]
+↓ Merge  
+[3, 27, 38, 43] [9, 10, 82]
+↓ Final merge
+[3, 9, 10, 27, 38, 43, 82]
+
+⚡ COMPLEXITY BREAKDOWN:
+• Time: Always O(n log n) - consistent performance
+• Space: O(n) - needs temporary arrays
+• Stable: YES - with careful implementation
+• Parallelizable: YES - halves can be sorted independently
+• External sort friendly: YES - works with disk-based data
+
+🎯 WHEN TO USE:
+• Large datasets requiring stable sort
+• Linked list sorting (efficient merging)
+• External sorting (disk-based)
+• When predictable O(n log n) is crucial
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+5️⃣ QUICK SORT — "The Partitioning Maverick"
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📝 EXACT STEP-BY-STEP ALGORITHM:
+
+━━━━━ A. MAIN QUICKSORT FUNCTION ━━━━━
+Step 1: ✅ Base case: If `low >= high`, return
+
+Step 2: 🎯 Partition the array: `pi = partition(arr, low, high)`
+        pi = partition index (pivot's final position)
+
+Step 3: 🔄 Recursively sort left part: `quickSort(arr, low, pi-1)`
+
+Step 4: 🔄 Recursively sort right part: `quickSort(arr, pi+1, high)`
+
+━━━━━ B. PARTITION FUNCTION (LOMUTO SCHEME) ━━━━━
+Step 1: 🎯 Choose pivot: `pivot = arr[high]`
+        (Can optimize with median-of-three)
+
+Step 2: 🎯 Initialize: `i = low - 1`
+        Tracks last position of smaller element
+
+Step 3: 🔄 Loop: `for j = low to high-1`
+
+Step 4: 🔍 Compare: If `arr[j] <= pivot`:
+        Element belongs to left partition
+
+Step 5: 🏃 Increment: `i++`
+        Expand left partition
+
+Step 6: 🏃 Swap: `swap(arr[i], arr[j])`
+        Move smaller element to left partition
+
+Step 7: ✅ After loop: Place pivot in correct position
+
+Step 8: 🏃 Swap: `swap(arr[i+1], arr[high])`
+        Pivot goes between left and right partitions
+
+Step 9: 🎯 Return: `return i+1` (pivot index)
+
+🔄 VISUALIZATION PROCESS:
+Array: [10, 80, 30, 90, 40, 50, 70], pivot=70
+Partition:
+10<70 → i=0, swap with self: [10, 80, 30, 90, 40, 50, 70]
+80>70 → skip
+30<70 → i=1, swap 80↔30: [10, 30, 80, 90, 40, 50, 70]
+90>70 → skip
+40<70 → i=2, swap 80↔40: [10, 30, 40, 90, 80, 50, 70]
+50<70 → i=3, swap 90↔50: [10, 30, 40, 50, 80, 90, 70]
+Place pivot: swap 80↔70: [10, 30, 40, 50, 70, 90, 80]
+Recurse on [10,30,40,50] and [90,80]
+
+⚡ COMPLEXITY BREAKDOWN:
+• Best/Average: O(n log n) - good pivot selection
+• Worst: O(n²) - bad pivot (already sorted/reverse)
+• Space: O(log n) average recursion depth
+• Stable: NO - swapping changes equal elements' order
+• Cache-friendly: YES - works on contiguous memory
+
+🎯 WHEN TO USE:
+• General-purpose sorting (C++ std::sort uses quicksort variant)
+• Arrays (not linked lists)
+• When average performance matters more than worst-case
+• In-memory sorting of large datasets
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+6️⃣ HEAP SORT — "The Binary Tree Sorter"
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📝 EXACT STEP-BY-STEP ALGORITHM:
+
+━━━━━ A. BUILD MAX-HEAP ━━━━━
+Step 1: 🎯 Start from last non-leaf node: `i = n/2 - 1`
+
+Step 2: 🔄 Loop backwards: `for i = n/2-1 down to 0`
+
+Step 3: 🔄 Call `heapify(arr, n, i)` on each node
+        Ensures max-heap property from bottom up
+
+━━━━━ B. HEAPIFY FUNCTION ━━━━━
+Step 1: 🎯 Assume current node is largest: `largest = i`
+
+Step 2: 🔍 Calculate left child: `left = 2*i + 1`
+
+Step 3: 🔍 Calculate right child: `right = 2*i + 2`
+
+Step 4: 🔍 Compare: If `left < n AND arr[left] > arr[largest]`:
+        Update `largest = left`
+
+Step 5: 🔍 Compare: If `right < n AND arr[right] > arr[largest]`:
+        Update `largest = right`
+
+Step 6: ✅ Check: If `largest != i`:
+        Current node not the largest
+
+Step 7: 🏃 Swap: `swap(arr[i], arr[largest])`
+        Move larger child up
+
+Step 8: 🔄 Recursively heapify affected subtree: `heapify(arr, n, largest)`
+
+━━━━━ C. EXTRACTION PHASE ━━━━━
+Step 1: 🔄 Loop: `for i = n-1 down to 1`
+
+Step 2: 🏃 Swap root with last element: `swap(arr[0], arr[i])`
+        Max element goes to sorted position at end
+
+Step 3: 🔄 Reduce heap size: `heap_size = i`
+
+Step 4: 🔄 Heapify root: `heapify(arr, i, 0)`
+        Restore max-heap property
+
+🔄 VISUALIZATION PROCESS:
+Array: [4, 10, 3, 5, 1]
+Build heap: [10, 5, 3, 4, 1]
+Extract max: Swap 10↔1 → [1, 5, 3, 4, 10]
+Heapify: [5, 4, 3, 1, 10]
+Extract max: Swap 5↔1 → [1, 4, 3, 5, 10]
+Heapify: [4, 1, 3, 5, 10]
+Continue until sorted: [1, 3, 4, 5, 10]
+
+⚡ COMPLEXITY BREAKDOWN:
+• Time: Always O(n log n) - consistent
+• Space: O(1) - in-place sorting
+• Stable: NO - heap operations reorder elements
+• Guaranteed performance: YES - no worst-case degradation
+• Parallelizable: Limited due to sequential extraction
+
+🎯 WHEN TO USE:
+• When guaranteed O(n log n) is required
+• Memory-constrained environments (in-place)
+• Real-time systems (predictable performance)
+• Implementing priority queues
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+7️⃣ COUNTING SORT — "The Non-Comparison Magician"
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📝 EXACT STEP-BY-STEP ALGORITHM:
+
+Step 1: 🎯 Find maximum: `maxVal = max_element(arr)`
+        Determines count array size
+
+Step 2: 🎯 Create count array: `count[maxVal+1] = {0}`
+        Initialize all counts to zero
+
+Step 3: 🔄 First pass: Count occurrences
+        `for each x in arr: count[x]++`
+        Now count[i] = frequency of value i
+
+Step 4: 🔄 Second pass: Prefix sum (cumulative counts)
+        `for i = 1 to maxVal: count[i] += count[i-1]`
+        Now count[i] = last position of value i in output
+
+Step 5: 🎯 Create output array: `output[n]`
+
+Step 6: 🔄 Third pass (backwards for stability):
+        `for i = n-1 down to 0:`
+        a. `x = arr[i]`
+        b. `output[count[x]-1] = x`
+        c. `count[x]--` (decrement position)
+
+Step 7: 🏃 Copy back: `for i = 0 to n-1: arr[i] = output[i]`
+
+🔄 VISUALIZATION PROCESS:
+Input: [4, 2, 2, 8, 3, 3, 1]
+Max = 8 → count[9]
+Count: [0,1,2,2,1,0,0,0,1] (occurrences)
+Prefix: [0,1,3,5,6,6,6,6,7] (positions)
+Backwards placement:
+arr[6]=1 → output[0]=1, count[1]=0
+arr[5]=3 → output[4]=3, count[3]=4
+arr[4]=3 → output[3]=3, count[3]=3
+...
+Output: [1, 2, 2, 3, 3, 4, 8]
+
+⚡ COMPLEXITY BREAKDOWN:
+• Time: O(n + k) where k = max value
+• Space: O(n + k) - count and output arrays
+• Stable: YES - with backward traversal
+• Non-comparison: YES - uses value as index
+• Integer-only: YES - works with non-negative integers
+
+🎯 WHEN TO USE:
+• Integers with small range (k ≈ n)
+• Non-negative integer keys
+• As subroutine for radix sort
+• When O(n) performance is critical
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+8️⃣ RADIX SORT — "The Digit-by-Digit Sorter"
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📝 EXACT STEP-BY-STEP ALGORITHM (LSD VERSION):
+
+Step 1: 🎯 Find maximum: `maxVal = max_element(arr)`
+        Determine number of digits
+
+Step 2: 🎯 Calculate digits: `d = floor(log10(maxVal)) + 1`
+        Or count digits while maxVal > 0
+
+Step 3: 🎯 Initialize: `exp = 1` (units place)
+
+Step 4: 🔄 For each digit position: `for digit = 1 to d`
+
+Step 5: 🔄 Apply counting sort on current digit:
+        a. Create count[10] = {0}
+        b. Extract digit: `(arr[i]/exp) % 10`
+        c. Count digit occurrences
+        d. Prefix sum on count array
+        e. Place elements in output based on digit
+        f. Copy output back to arr
+
+Step 6: 🎯 Update: `exp *= 10`
+        Move to next digit (tens, hundreds...)
+
+Step 7: 🔄 Repeat for all digits
+
+🔄 VISUALIZATION PROCESS:
+Array: [170, 45, 75, 90, 802, 24, 2, 66]
+Max=802 → 3 digits
+Pass 1 (units): [170, 90, 802, 2, 24, 45, 75, 66]
+Pass 2 (tens):  [802, 2, 24, 45, 66, 170, 75, 90]
+Pass 3 (hundreds): [2, 24, 45, 66, 75, 90, 170, 802]
+
+⚡ COMPLEXITY BREAKDOWN:
+• Time: O(d*(n+k)) where d=digits, k=10 (base)
+• Space: O(n+k) - temporary arrays
+• Stable: YES - uses stable counting sort
+• Non-comparison: YES - sorts by digit values
+• Fixed-width: Works best with fixed-length keys
+
+🎯 WHEN TO USE:
+• Large integers with many digits
+• Fixed-length strings/keys
+• When range is large but digits are few
+• As external sort for large datasets
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+9️⃣ BUCKET SORT — "The Distributive Collector"
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📝 EXACT STEP-BY-STEP ALGORITHM:
+
+Step 1: 🎯 Create k empty buckets (vectors/lists)
+        Typically k = n or sqrt(n)
+
+Step 2: 🔄 Distribute elements into buckets:
+        `bucket_index = floor(k * arr[i])` for 0..1 range
+        Or custom mapping for other ranges
+
+Step 3: 🔄 Sort individual buckets:
+        Typically use insertion sort (good for small buckets)
+        Or any other stable sort
+
+Step 4: 🔄 Concatenate all buckets:
+        `for each bucket in order:`
+        `   append bucket elements to output`
+
+Step 5: 🏃 Copy output back to original array
+
+🔄 VISUALIZATION PROCESS:
+Array: [0.42, 0.32, 0.23, 0.52, 0.25, 0.47, 0.51]
+Buckets (size 10):
+Bucket 4: [0.42, 0.47]
+Bucket 3: [0.32]
+Bucket 2: [0.23, 0.25]
+Bucket 5: [0.52, 0.51]
+Sort buckets:
+Bucket 2: [0.23, 0.25] (sorted)
+Bucket 3: [0.32]
+Bucket 4: [0.42, 0.47]
+Bucket 5: [0.51, 0.52]
+Concatenate: [0.23, 0.25, 0.32, 0.42, 0.47, 0.51, 0.52]
+
+⚡ COMPLEXITY BREAKDOWN:
+• Best: O(n) - uniform distribution
+• Average: O(n + k) - good distribution
+• Worst: O(n²) - all elements in one bucket
+• Space: O(n + k) - buckets storage
+• Stable: YES - with stable bucket sorting
+• Requires: Uniform distribution assumption
+
+🎯 WHEN TO USE:
+• Uniformly distributed floating-point numbers
+• When input distribution is known
+• As part of more complex algorithms
+• When O(n) expected time is acceptable
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🔟 HYBRID SORTS & MODERN IMPLEMENTATIONS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📝 TIMSORT (Python's default):
+• Combination of insertion sort and merge sort
+• Finds "runs" of already ordered elements
+• Uses insertion sort for small runs (<64 elements)
+• Merges runs using merge sort
+• Adaptive to real-world data patterns
+
+📝 INTROSORT (C++ std::sort):
+• Starts with quicksort
+• Switches to heapsort if recursion depth too high
+• Uses insertion sort for small partitions
+• Guarantees O(n log n) worst-case
+
+📝 SHELL SORT (Diminishing increment):
+• Generalized insertion sort
+• Compares elements far apart, then reduces gap
+• Gap sequence affects performance
+• In-place, unstable, practical for medium arrays
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🎯 DECISION GUIDE: WHICH SORT TO CHOOSE?
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+ASK THESE QUESTIONS:
+
+1. How large is your data?
+   • n < 50 → Insertion/Bubble sort
+   • 50 < n < 1000 → Quick/Heap sort
+   • n > 1000 → Merge/Quick/Radix sort
+
+2. What type of data?
+   • Integers with small range → Counting sort
+   • Large integers → Radix sort
+   • Floating-point (0..1) → Bucket sort
+   • Generic comparable → Comparison sorts
+
+3. Need stability?
+   • YES → Merge, Insertion, Bubble, Counting, Radix, Bucket
+   • NO → Quick, Heap, Selection
+
+4. Memory constraints?
+   • Tight → Heap, Selection, Insertion, Bubble (O(1))
+   • Ample → Merge, Counting, Radix, Bucket (O(n))
+
+5. Input characteristics?
+   • Nearly sorted → Insertion, Bubble (adaptive)
+   • Random → Quick, Merge, Heap
+   • Reverse sorted → Merge, Heap (avoid Quick)
+
+6. Need guaranteed O(n log n)?
+   • YES → Merge, Heap
+   • NO → Quick (but usually faster)
+
+7. Implementation complexity?
+   • Simple → Bubble, Selection, Insertion
+   • Moderate → Quick, Heap
+   • Complex → Merge, Counting, Radix, Bucket
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+💎 GOLDEN RULES FOR SORTING
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. **KNOW YOUR DATA**: The best algorithm depends on your specific data characteristics.
+
+2. **STABILITY MATTERS**: If you're sorting by multiple keys or need to preserve order of equal elements, choose stable sorts.
+
+3. **MEMORY VS SPEED**: There's always a trade-off. In-place sorts save memory but may be slower.
+
+4. **LIBRARIES ARE SMART**: std::sort in C++, Collections.sort() in Java - these use hybrid algorithms optimized for real-world data.
+
+5. **PROFILE BEFORE OPTIMIZING**: Don't guess - measure! What works for one dataset may not work for another.
+
+6. **CONSIDER CACHE**: Algorithms with good locality (Quick sort) often outperform theoretically better algorithms.
+
+7. **PARALLEL POTENTIAL**: For very large datasets, consider parallel sorts (parallel merge sort, sample sort).
+
+8. **SPECIALIZE WHEN POSSIBLE**: If you know your data is integers 0-1000, counting sort will beat any comparison sort.
+
+───────────────────────────────────────────────────────────────────────
+🚀 FINAL THOUGHT:
+───────────────────────────────────────────────────────────────────────
+
+Sorting is not about finding the 'best' algorithm, but about finding the 
+'right' algorithm for your specific problem. The most elegant solution 
+is the one that perfectly matches your constraints, your data, and your 
+requirements. Master these algorithms not as isolated techniques, but as 
+a toolkit - each tool designed for a specific job in the workshop of 
+computational problem-solving.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+➡️ NEXT STEPS: Implement each algorithm, test with different datasets,
+              compare performance, and understand the trade-offs in practice!
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
